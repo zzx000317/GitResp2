@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="middle.school.sys.dao.ParentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="middle.school.sys.entity.ParentEntity" id="parentMap">
+        <result property="id" column="id"/>
+        <result property="uuid" column="uuid"/>
+        <result property="username" column="username"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="age" column="age"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="studentId" column="student_id"/>
+        <result property="studentName" column="student_name"/>
+    </resultMap>
+    <select id="getParentList"  resultType="middle.school.sys.entity.ParentEntity">
+        SELECT
+        a.id,a.username,a.sex,a.address,a.phone,a.age,a.gmt_create,a.gmt_modified,a.password,
+        c.id  as student_id,
+        c.username as student_name
+        FROM
+        middle_parent a
+        LEFT JOIN middle_student c ON a.student_id = c.id
+        where 1=1
+        <if test="queryDto.username != null and queryDto.username != ''">
+            AND a.username = #{queryDto.username}
+        </if>
+    </select>
+    <delete id="deleteParStu" >
+    delete middle_student_parent where parent_id = #{id}
+</delete>
+</mapper>

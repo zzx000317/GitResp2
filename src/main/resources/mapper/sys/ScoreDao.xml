@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="middle.school.sys.dao.ScoreDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <!--为了是数据库中列名和实体类属性值对应上，否则数据不能封装-->
+    <resultMap type="middle.school.sys.entity.ScoreEntity" id="scoreMap">
+        <result property="id" column="id"/>
+        <result property="studentId" column="student_id"/>
+        <result property="studentName" column="student_name"/>
+        <result property="exam" column="exam"/>
+        <result property="classId" column="class_id"/>
+        <result property="teacherId" column="teacher_id"/>
+        <result property="chineseScore" column="chinese_score"/>
+        <result property="mathScore" column="math_score"/>
+        <result property="englishScore" column="english_score"/>
+        <result property="physicsScore" column="physics_score"/>
+        <result property="chemistryScore" column="chemistry_score"/>
+        <result property="biologyScore" column="biology_score"/>
+        <result property="politicsScore" column="politics_score"/>
+        <result property="historyScore" column="history_score"/>
+        <result property="geographyScore" column="geography_score"/>
+        <result property="paintingScore" column="painting_score"/>
+        <result property="sportsScore" column="sports_score"/>
+        <result property="musicScore" column="music_score"/>
+    </resultMap>
+    <select id="getScoreListPar" resultType="middle.school.sys.entity.ScoreEntity">
+        select a.* from middle_score a
+inner join middle_student_parent c on a.student_id = c.student_id where c.parent_id = #{parentId}
+    </select>
+
+</mapper>

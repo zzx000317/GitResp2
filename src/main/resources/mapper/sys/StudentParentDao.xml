@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="middle.school.sys.dao.StudentParentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="middle.school.sys.entity.StudentParentEntity" id="studentParentMap">
+        <result property="parentId" column="parent_id"/>
+        <result property="studentId" column="student_id"/>
+    </resultMap>
+
+
+</mapper>

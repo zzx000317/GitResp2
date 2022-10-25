@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="middle.school.notice.mapper.NoticeMapper">
+    <resultMap type="middle.school.notice.entity.Notice" id="noticeMap">
+        <result property="id" column="id"/>
+        <result property="notice" column="notice"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="teacherId" column="teacher_id"/>
+        <result property="classId" column="class_id"/>
+        <result property="parentId" column="parent_id"/>
+    </resultMap>
+
+    <select id="getNoticeListPar" resultType="middle.school.notice.entity.Notice">
+        select a.* from middle_notice a inner join middle_student b on a.class_id = b.class_id
+inner join middle_student_parent c on b.id = c.student_id where c.parent_id = #{parentId}
+    </select>
+</mapper>
